@@ -1,0 +1,53 @@
+﻿@model HomeIndexView
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Manga Orders!</h1>
+</div>
+
+<hr />
+
+<h2>Book Details</h2>
+@if (Model.Books != null && Model.Books.Any())
+{
+    @foreach (var book in Model.Books)
+    {
+        <div>
+            <h3>@book.Title</h3>
+            <p><strong>Author:</strong> @book.Author</p>
+            <p><strong>ID:</strong> @book.Id</p>
+        </div>
+        <hr />
+    }
+}
+else
+{
+    <p>No books available.</p>
+}
+
+<hr />
+
+<h2>Customer Details</h2>
+@if (Model.Customers != null && Model.Customers.Any()) // Check if customers exist
+{
+    @foreach (var customer in Model.Customers)
+    {
+        <div>
+            <h3>@customer.FullName</h3>
+            <p><strong>Email:</strong> @customer.Email</p>
+            <p><strong>Title:</strong> @customer.Title</p>
+            @if (!string.IsNullOrEmpty(customer.MiddleName))
+            {
+                <p><strong>Middle Name:</strong> @customer.MiddleName</p>
+            }
+        </div>
+        <hr />
+    }
+}
+else
+{
+    <p>No customers available.</p>
+}
